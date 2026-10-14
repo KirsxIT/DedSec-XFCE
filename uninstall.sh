@@ -3,6 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/lib/rice.sh"
+require_xfce
 
 remove_if_unchanged() {
     local file="$1" checksum_file="$2" expected actual
@@ -106,5 +107,5 @@ if [[ -f "$STATE_DIR/live-wallpaper-path" ]]; then
 fi
 
 rm -rf -- "$STATE_DIR"
-printf 'Saved XFCE, window, and terminal settings restored; the managed prompt and wallpaper files were removed.\n'
+printf 'Saved XFCE, window, and terminal settings restored for %s; managed prompt and wallpaper files were removed.\n' "$(id -un)"
 printf 'Log out and back in if the desktop has not refreshed its appearance.\n'

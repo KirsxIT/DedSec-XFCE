@@ -177,7 +177,8 @@ if command -v mpv >/dev/null 2>&1 && command -v xwinwrap >/dev/null 2>&1; then
     "$PLAYER_DIR/wallpaper.sh" start
 fi
 
-printf 'DedSec XFCE interface installed: neon panel styling, Kali-dark window theme, supplied live wallpaper, terminal skin, and zsh prompt.\n'
+printf 'DedSec XFCE interface installed for account %s (HOME=%s).\n' "$(id -un)" "$HOME"
+printf 'Neon panel styling, Kali-Dark window theme, supplied live wallpaper, terminal skin, and zsh prompt are configured for this account only.\n'
 if ! command -v mpv >/dev/null 2>&1 || ! command -v xwinwrap >/dev/null 2>&1; then
     printf 'Live wallpaper needs mpv and xwinwrap. Until installed, XFCE shows the supplied static fallback wallpaper.\n'
     printf 'See README.md for the X11 live-wallpaper dependencies and setup.\n'
