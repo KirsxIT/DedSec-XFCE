@@ -1,0 +1,79 @@
+@define-color accent_color #00ff78;
+@define-color accent_bg_color #00d866;
+@define-color accent_fg_color #07110b;
+@define-color theme_selected_bg_color #00c96b;
+@define-color theme_selected_fg_color #07110b;
+
+window,
+dialog,
+messagedialog {
+  background-color: #0b0f12;
+  color: #e6f2ea;
+}
+
+entry,
+textview,
+spinbutton,
+combobox button {
+  background-color: #10171b;
+  color: #e9fff1;
+  border-color: #28513b;
+  caret-color: #00ff78;
+  selection-background-color: #00c96b;
+}
+
+button {
+  color: #d6e8dd;
+}
+
+button:hover {
+  color: #00ff78;
+}
+
+menu,
+menu menuitem,
+.context-menu {
+  background-color: #0b1013;
+  color: #dcf5e5;
+}
+
+menu menuitem:hover {
+  background-color: #103522;
+  color: #00ff78;
+}
+
+tooltip {
+  background-color: #080c0f;
+  color: #baffd2;
+  border: 1px solid #00c96b;
+}
+
+#XfcePanelWindow {
+  background-color: rgba(7, 11, 14, 0.94);
+  border: 0;
+  border-bottom: 1px solid rgba(0, 255, 120, 0.82);
+  box-shadow: inset 0 -1px 0 rgba(0, 255, 120, 0.16);
+}
+
+#XfcePanelWindow button,
+#XfcePanelWindow menuitem {
+  background-color: transparent;
+  color: #d7e9df;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+#XfcePanelWindow button:hover,
+#XfcePanelWindow button:checked {
+  background-color: rgba(0, 201, 107, 0.16);
+  color: #00ff78;
+}
+
+#XfcePanelWindow .tasklist button:checked {
+  border-bottom: 2px solid #00ff78;
+}
+
+#XfcePanelWindow separator {
+  background-color: rgba(0, 255, 120, 0.35);
+}
