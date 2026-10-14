@@ -12,41 +12,21 @@ The installer changes only the current account's XFCE GTK/window-manager theme, 
 
 ## Install
 
-From a terminal in this project directory:
+From a terminal in the target account's XFCE session:
 
 ```bash
-# Add your permitted wallpaper files to assets/ first; see assets/README.md.
-./install.sh
+./setup.sh
 ```
 
-Install for each account separately, from that account's own graphical XFCE session:
+`setup.sh` installs the required Kali packages, builds and installs `xwinwrap` if needed, then applies the interface. It uses `sudo` only for system package/build installation when run as a regular user. For root, start a root XFCE session and run the script directly, without `sudo`. The setup also requires the wallpaper files described in [assets/README.md](assets/README.md).
 
-1. Log into your regular Kali user in XFCE and run `./install.sh` for that user.
-2. If root has its own XFCE desktop session, log into that session and run `./install.sh` there to theme root too.
+Run it once in each account's own XFCE session if you want both the regular account and root customized. Settings, installed wallpaper copies, startup entries, and restore state remain separate for each account. The script checks for a previous install, backs up its restore state, and tries to uninstall it before reinstalling; if it cannot safely proceed, it stops and keeps the backup.
 
-The script detects whether the current account is `root` or a regular user, checks that it owns `HOME`, and scopes settings, media, startup entries, and saved restore state to that account. **Do not run it with `sudo`** from another account's desktop: XFCE settings belong to the active session and running via `sudo` can target the wrong home or session. Root styling requires an actual root XFCE session; installing for the regular account does not require root.
+The setup installs zsh and zsh-syntax-highlighting. Open a new zsh terminal to see the neon prompt and command colors. A soft terminal bell is emitted as you type; its loudness depends on your desktop's configured bell volume.
 
-Open a new zsh terminal to see the neon prompt. A soft terminal bell is emitted as you type; its loudness depends on your desktop's configured bell volume. The installer enables XFCE Terminal's audible bell.
+The setup installs the xwinwrap build dependencies, builds xwinwrap, and installs mpv for the animated wallpaper. It starts immediately and automatically on future X11 XFCE sign-ins. Log out and back in to apply panel and window styling.
 
-Live syntax highlighting colors commands, builtins, functions, aliases, quoted arguments, redirections, and unknown commands. On Kali, install the optional highlighter if needed:
-
-```bash
-sudo apt install zsh-syntax-highlighting
-```
-
-For the animated MP4 wallpaper, install `mpv` and `xwinwrap`. On Kali, install the build dependencies and build xwinwrap from its upstream source:
-
-```bash
-sudo apt install mpv git build-essential xorg-dev libx11-dev x11proto-xext-dev libxrender-dev libxext-dev
-git clone https://github.com/r00tdaemon/xwinwrap.git
-cd xwinwrap
-make
-sudo make install
-```
-
-When `mpv` and `xwinwrap` are available, the wallpaper starts immediately and automatically on future X11 XFCE sign-ins. If either player is missing, the static desktop image remains visible. Start a new terminal after installing syntax highlighting. Log out and back in to apply panel and window styling.
-
-The installer saves prior XFCE values and terminal/GTK configuration under `~/.local/state/dedsec-kali-rice`. It refuses to overwrite an existing saved installation or managed wallpaper, player directory, or autostart entry.
+The installer saves prior XFCE values and terminal/GTK configuration under `~/.local/state/dedsec-kali-rice`. Setup backs up that restore state before reinstalling and stops if another existing file cannot safely be replaced.
 
 ## Uninstall
 
