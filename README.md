@@ -18,7 +18,7 @@ From a terminal in the target account's XFCE session:
 ./setup.sh
 ```
 
-`setup.sh` installs the required Kali packages, builds and installs `xwinwrap` if needed, then applies the interface. It uses `sudo` only for system package/build installation when run as a regular user. For root, start a root XFCE session and run the script directly, without `sudo`. The setup also requires the wallpaper files described in [assets/README.md](assets/README.md).
+`setup.sh` installs the required Kali packages without interactive package-configuration dialogs, builds and installs `xwinwrap` if needed, then applies the interface. It uses `sudo` only for system package/build installation when run as a regular user. For root, start a root XFCE session and run the script directly, without `sudo`. The setup also requires the wallpaper files described in [assets/README.md](assets/README.md).
 
 Run it once in each account's own XFCE session if you want both the regular account and root customized. Settings, installed wallpaper copies, startup entries, and restore state remain separate for each account. The script checks for a previous install, backs up its restore state, and tries to uninstall it before reinstalling; if it cannot safely proceed, it stops and keeps the backup.
 

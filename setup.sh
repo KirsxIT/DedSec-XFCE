@@ -62,9 +62,9 @@ fi
 
 run_as_root() {
     if (( EUID == 0 )); then
-        "$@"
+        DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=l "$@"
     else
-        sudo "$@"
+        sudo env DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=l "$@"
     fi
 }
 
@@ -104,6 +104,8 @@ done
 printf 'Installing Kali XFCE theme dependencies for %s...\n' "$(id -un)"
 run_as_root apt-get update
 run_as_root apt-get install -y \
+    -o Dpkg::Options::=--force-confdef \
+    -o Dpkg::Options::=--force-confold \
     build-essential \
     git \
     libx11-dev \
